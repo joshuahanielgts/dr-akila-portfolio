@@ -36,7 +36,7 @@ export const Route = createRootRoute({
           "Dr. K. Akila, M.E., Ph.D. — Assistant Professor (S.G), Department of Computer Science and Engineering, SRM Institute of Science and Technology, Vadapalani. Researcher in image processing and human action recognition with 19.7 years of teaching experience.",
       },
       { name: "author", content: "Dr. K. Akila" },
-      { property: "og:title", content: "Dr. K. Akila | Academic Portfolio" },
+      { property: "og:title", content: "Dr. K. Akila | Asst. Professor, CSE — SRM IST" },
       {
         property: "og:description",
         content:
@@ -44,6 +44,12 @@ export const Route = createRootRoute({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Dr. K. Akila | Asst. Professor, CSE — SRM IST" },
+      { name: "description", content: "Akila's Digital Presence is a modern, single-page academic portfolio website showcasing Dr. K. AKILA's professional profile and achievements." },
+      { property: "og:description", content: "Akila's Digital Presence is a modern, single-page academic portfolio website showcasing Dr. K. AKILA's professional profile and achievements." },
+      { name: "twitter:description", content: "Akila's Digital Presence is a modern, single-page academic portfolio website showcasing Dr. K. AKILA's professional profile and achievements." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/1de8615c-98c3-4a71-92cb-a6fdb41e9f32/id-preview-1307bbbb--b70ed5b7-c956-4e10-a76e-e82f96d116a0.lovable.app-1777737319204.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/1de8615c-98c3-4a71-92cb-a6fdb41e9f32/id-preview-1307bbbb--b70ed5b7-c956-4e10-a76e-e82f96d116a0.lovable.app-1777737319204.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
