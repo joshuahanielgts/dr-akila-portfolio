@@ -29,19 +29,29 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Dr. K. Akila | Asst. Professor, CSE — SRM IST" },
+      {
+        name: "description",
+        content:
+          "Dr. K. Akila, M.E., Ph.D. — Assistant Professor (S.G), Department of Computer Science and Engineering, SRM Institute of Science and Technology, Vadapalani. Researcher in image processing and human action recognition with 19.7 years of teaching experience.",
+      },
+      { name: "author", content: "Dr. K. Akila" },
+      { property: "og:title", content: "Dr. K. Akila | Academic Portfolio" },
+      {
+        property: "og:description",
+        content:
+          "Asst. Professor (S.G), CSE at SRM IST. 76 publications, 5 patents, expertise in AI, ML, image processing and computer vision.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap",
       },
     ],
   }),
@@ -52,7 +62,7 @@ export const Route = createRootRoute({
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
         <HeadContent />
       </head>
