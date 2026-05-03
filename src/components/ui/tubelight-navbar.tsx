@@ -30,6 +30,31 @@ export function NavBar({ items, className }: NavBarProps) {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const activeItem = items.find((item) => item.url === `#${entry.target.id}`)
+            if (activeItem) {
+              setActiveTab(activeItem.name)
+            }
+          }
+        })
+      },
+      { rootMargin: "-30% 0px -70% 0px" }
+    )
+
+    items.forEach((item) => {
+      if (item.url.startsWith("#")) {
+        const element = document.querySelector(item.url)
+        if (element) observer.observe(element)
+      }
+    })
+
+    return () => observer.disconnect()
+  }, [items])
+
   return (
     <div
       className={cn(
