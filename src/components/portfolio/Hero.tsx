@@ -48,19 +48,6 @@ export function Hero() {
             skills to grow myself along with the organization."
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            {identifiers.map(({ label, icon: Icon, href }) => (
-              <a
-                key={label}
-                href={href}
-                aria-label={label}
-                title={label}
-                className="group flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-surface-glass text-muted-foreground transition-all hover:-translate-y-0.5 hover:border-accent hover:text-accent hover:shadow-glow"
-              >
-                <Icon size={18} />
-              </a>
-            ))}
-          </div>
 
           <div className="mt-10 flex flex-wrap gap-3">
             <a
