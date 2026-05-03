@@ -51,6 +51,31 @@ export function NavBar({ items, className }: NavBarProps) {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [items])
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const activeItem = items.find((item) => item.url === `#${entry.target.id}`)
+            if (activeItem) {
+              setActiveTab(activeItem.name)
+            }
+          }
+        })
+      },
+      { rootMargin: "-30% 0px -70% 0px" }
+    )
+
+    items.forEach((item) => {
+      if (item.url.startsWith("#")) {
+        const element = document.querySelector(item.url)
+        if (element) observer.observe(element)
+      }
+    })
+
+    return () => observer.disconnect()
+  }, [items])
+
   return (
     <div className={cn("relative z-50", className)}>
       <div className="flex items-center gap-1 bg-background/5 border border-border/40 backdrop-blur-md py-1 px-1 rounded-full shadow-sm">
