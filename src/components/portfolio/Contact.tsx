@@ -88,20 +88,25 @@ export function Contact() {
               </div>
             </a>
 
-            <div className="flex items-start gap-4 rounded-2xl glass p-5 shadow-soft">
+            <a
+              href="https://maps.app.goo.gl/T8ad2ssFKFjgs5y77"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-start gap-4 rounded-2xl glass p-5 shadow-soft transition-all hover:-translate-y-0.5 hover:border-accent"
+            >
               <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gradient-accent shadow-glow">
                 <MapPin size={18} className="text-primary-foreground" />
               </div>
               <div>
                 <div className="text-xs uppercase tracking-wider text-muted-foreground">Office</div>
-                <div className="mt-1 font-medium text-foreground">
+                <div className="mt-1 font-medium text-foreground transition-colors group-hover:text-accent">
                   SRM IST, Vadapalani Campus
                   <span className="block text-sm font-normal text-muted-foreground">
                     Department of CSE, Chennai
                   </span>
                 </div>
               </div>
-            </div>
+            </a>
           </motion.div>
 
           <motion.form

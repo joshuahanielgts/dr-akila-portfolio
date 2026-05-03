@@ -10,13 +10,13 @@ const items = [
     date: "January 2020",
   },
   {
-    degree: "Master of Engineering (M.E.)(CSE)",
+    degree: "Master of Engineering (M.E.) (CSE)",
     field: "First Class with Distinction",
     school: "Sathyabama University",
     date: "April 2005",
   },
   {
-    degree: "Bachelor of Engineering (B.E.)(CSE)",
+    degree: "Bachelor of Engineering (B.E.) (CSE)",
     field: "First Class",
     school: "Arunai Engg College, University of Madras",
     date: "April 2003",
