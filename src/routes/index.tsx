@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
-import { NavBar } from "@/components/ui/tubelight-navbar";
 import { GraduationCap, Briefcase, FlaskConical, Award, Zap, Mail } from "lucide-react";
 import { Hero } from "@/components/portfolio/Hero";
 import { Education } from "@/components/portfolio/Education";
@@ -36,7 +35,6 @@ function Index() {
   return (
     <div className="min-h-screen pb-[80px] md:pb-0">
       <Header />
-      <NavBar items={navItems} />
       <InteractiveMenu items={mobileNavItems} />
       <main>
         <Hero />

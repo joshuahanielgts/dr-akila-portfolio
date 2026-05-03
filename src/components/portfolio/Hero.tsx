@@ -13,7 +13,7 @@ const identifiers = [
 
 export function Hero() {
   return (
-    <section id="about" className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
+    <section id="" className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
       <div className="absolute inset-0 grid-bg opacity-40" aria-hidden />
       <div className="absolute -left-32 top-20 h-96 w-96 rounded-full bg-primary/20 blur-3xl" aria-hidden />
       <div className="absolute -right-20 bottom-0 h-96 w-96 rounded-full bg-accent/15 blur-3xl" aria-hidden />

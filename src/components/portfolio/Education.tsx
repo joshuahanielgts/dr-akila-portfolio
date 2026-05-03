@@ -4,19 +4,19 @@ import { SectionHeading } from "./SectionHeading";
 
 const items = [
   {
-    degree: "Ph.D.",
+    degree: "Doctor of Philosophy (Ph.D.)",
     field: "Image Processing",
     school: "Anna University, Chennai",
     date: "January 2020",
   },
   {
-    degree: "M.E. (CSE)",
+    degree: "Master of Engineering (M.E.)(CSE)",
     field: "First Class with Distinction",
     school: "Sathyabama University",
     date: "April 2005",
   },
   {
-    degree: "B.E. (CSE)",
+    degree: "Bachelor of Engineering (B.E.)(CSE)",
     field: "First Class",
     school: "Arunai Engg College, University of Madras",
     date: "April 2003",

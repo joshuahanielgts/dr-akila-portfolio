@@ -3,20 +3,42 @@ import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { SectionHeading } from "./SectionHeading";
+import { supabase } from "@/lib/supabase";
 
 export function Contact() {
   const [submitting, setSubmitting] = useState(false);
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
-      toast.success("Message ready", {
-        description: "Thank you for reaching out. Please email directly for fastest reply.",
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      subject: formData.get("subject") as string,
+      message: formData.get("message") as string,
+    };
+
+    try {
+      const { error } = await supabase
+        .from("contact_responses")
+        .insert([data]);
+
+      if (error) throw error;
+
+      toast.success("Message sent successfully!", {
+        description: "Thank you for reaching out. Dr. Akila will get back to you soon.",
       });
       (e.target as HTMLFormElement).reset();
-    }, 700);
+    } catch (error: any) {
+      console.error("Supabase error:", error);
+      toast.error("Failed to send message", {
+        description: error.message || "Please try again later or email directly.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
