@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { GraduationCap, BookOpen, Award, Microscope, FlaskConical, IdCard, ArrowRight, Mail } from "lucide-react";
 import portrait from "@/assets/akila.jpeg";
+import { scrollToId } from "@/lib/scroll";
 
 const identifiers = [
   { label: "Google Scholar", icon: GraduationCap, href: "#" },
@@ -52,6 +53,7 @@ export function Hero() {
           <div className="mt-10 flex flex-wrap gap-3">
             <a
               href="#research"
+              onClick={(e) => { e.preventDefault(); scrollToId("research"); }}
               className="group inline-flex items-center gap-2 rounded-xl bg-gradient-accent px-6 py-3 text-sm font-semibold text-primary-foreground shadow-glow transition-transform hover:scale-[1.03]"
             >
               View Publications
@@ -59,6 +61,7 @@ export function Hero() {
             </a>
             <a
               href="#contact"
+              onClick={(e) => { e.preventDefault(); scrollToId("contact"); }}
               className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface-glass px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:border-accent hover:text-accent"
             >
               <Mail size={16} />

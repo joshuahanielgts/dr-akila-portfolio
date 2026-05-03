@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { scrollToId } from '@/lib/scroll';
 
 type IconComponentType = React.ElementType<{ className?: string, size?: number, strokeWidth?: number }>;
 export interface InteractiveMenuItem {
@@ -54,31 +55,38 @@ const InteractiveMenu: React.FC<InteractiveMenuProps> = ({ items, accentColor })
   }, [activeIndex, finalItems]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = finalItems.findIndex((item) => item.url === `#${entry.target.id}`);
-            if (index !== -1) {
-              setActiveIndex(index);
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight / 3
+
+      let currentActiveIndex = 0;
+      
+      finalItems.forEach((item, index) => {
+        if (item.url && item.url.startsWith("#")) {
+          const el = document.querySelector(item.url);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            const absoluteTop = rect.top + window.scrollY;
+            if (scrollPosition >= absoluteTop) {
+              currentActiveIndex = index;
             }
           }
-        });
-      },
-      { rootMargin: "-30% 0px -70% 0px" }
-    );
+        }
+      })
 
-    finalItems.forEach((item) => {
-      if (item.url && item.url.startsWith("#")) {
-        const element = document.querySelector(item.url);
-        if (element) observer.observe(element);
-      }
-    });
+      setActiveIndex(currentActiveIndex);
+    }
 
-    return () => observer.disconnect();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [finalItems]);
 
-  const handleItemClick = (index: number) => {
+  const handleItemClick = (e: React.MouseEvent<HTMLAnchorElement>, index: number, url?: string) => {
+    if (url && url.startsWith("#")) {
+      e.preventDefault();
+      scrollToId(url);
+    }
     setActiveIndex(index);
   };
 
@@ -105,7 +113,7 @@ const InteractiveMenu: React.FC<InteractiveMenuProps> = ({ items, accentColor })
               key={item.label}
               href={item.url || "#"}
               className={`menu__item relative flex flex-col items-center justify-center flex-1 py-2 text-[var(--component-inactive-color)] transition-colors ${isActive ? 'active text-[var(--component-active-color)]' : ''}`}
-              onClick={() => handleItemClick(index)}
+              onClick={(e) => handleItemClick(e, index, item.url)}
               ref={(el) => (itemRefs.current[index] = el)}
               style={{ '--lineWidth': '0px' } as React.CSSProperties} 
             >

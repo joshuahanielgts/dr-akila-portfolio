@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { scrollToId } from "@/lib/scroll"
 
 interface NavItem {
   name: string
@@ -51,31 +52,6 @@ export function NavBar({ items, className }: NavBarProps) {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [items])
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const activeItem = items.find((item) => item.url === `#${entry.target.id}`)
-            if (activeItem) {
-              setActiveTab(activeItem.name)
-            }
-          }
-        })
-      },
-      { rootMargin: "-30% 0px -70% 0px" }
-    )
-
-    items.forEach((item) => {
-      if (item.url.startsWith("#")) {
-        const element = document.querySelector(item.url)
-        if (element) observer.observe(element)
-      }
-    })
-
-    return () => observer.disconnect()
-  }, [items])
-
   return (
     <div className={cn("relative z-50", className)}>
       <div className="flex items-center gap-1 bg-background/5 border border-border/40 backdrop-blur-md py-1 px-1 rounded-full shadow-sm">
@@ -86,7 +62,7 @@ export function NavBar({ items, className }: NavBarProps) {
             <a
               key={item.name}
               href={item.url}
-              onClick={() => setActiveTab(item.name)}
+              onClick={(e) => { e.preventDefault(); scrollToId(item.url); }}
               className={cn(
                 "relative cursor-pointer text-sm font-medium px-4 py-1.5 rounded-full transition-colors",
                 "text-foreground/70 hover:text-primary",
