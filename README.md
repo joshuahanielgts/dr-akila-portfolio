@@ -57,4 +57,4 @@ A modern, high-performance academic portfolio website showcasing the professiona
 
 ## 📄 License
 
-Copyright © 2024 Dr. K. Akila. All rights reserved.
+Copyright © 2026 Dr. K. Akila. All rights reserved.
