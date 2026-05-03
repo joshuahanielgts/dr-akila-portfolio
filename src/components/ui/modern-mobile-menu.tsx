@@ -53,6 +53,31 @@ const InteractiveMenu: React.FC<InteractiveMenuProps> = ({ items, accentColor })
     };
   }, [activeIndex, finalItems]);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = finalItems.findIndex((item) => item.url === `#${entry.target.id}`);
+            if (index !== -1) {
+              setActiveIndex(index);
+            }
+          }
+        });
+      },
+      { rootMargin: "-30% 0px -70% 0px" }
+    );
+
+    finalItems.forEach((item) => {
+      if (item.url && item.url.startsWith("#")) {
+        const element = document.querySelector(item.url);
+        if (element) observer.observe(element);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, [finalItems]);
+
   const handleItemClick = (index: number) => {
     setActiveIndex(index);
   };
