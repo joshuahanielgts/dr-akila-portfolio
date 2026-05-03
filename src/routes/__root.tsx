@@ -1,4 +1,4 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, ScrollRestoration } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
 
@@ -48,8 +48,8 @@ export const Route = createRootRoute({
       { name: "description", content: "Akila's Digital Presence is a modern, single-page academic portfolio website showcasing Dr. K. AKILA's professional profile and achievements." },
       { property: "og:description", content: "Akila's Digital Presence is a modern, single-page academic portfolio website showcasing Dr. K. AKILA's professional profile and achievements." },
       { name: "twitter:description", content: "Akila's Digital Presence is a modern, single-page academic portfolio website showcasing Dr. K. AKILA's professional profile and achievements." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/1de8615c-98c3-4a71-92cb-a6fdb41e9f32/id-preview-1307bbbb--b70ed5b7-c956-4e10-a76e-e82f96d116a0.lovable.app-1777737319204.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/1de8615c-98c3-4a71-92cb-a6fdb41e9f32/id-preview-1307bbbb--b70ed5b7-c956-4e10-a76e-e82f96d116a0.lovable.app-1777737319204.png" },
+      { property: "og:image", content: "/akila.jpeg" },
+      { name: "twitter:image", content: "/akila.jpeg" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -61,25 +61,15 @@ export const Route = createRootRoute({
       },
     ],
   }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
 });
 
-function RootShell({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en" className="dark">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
-
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <>
+      <Outlet />
+      <ScrollRestoration />
+    </>
+  );
 }
